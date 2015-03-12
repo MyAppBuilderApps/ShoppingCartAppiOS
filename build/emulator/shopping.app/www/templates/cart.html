@@ -1,0 +1,68 @@
+<ion-view title="Cart">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-ios7-arrow-left" ng-click="cartback()"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+      <button style=" background-image : url(img/cart.png); background-size:100% 75%; background-repeat:no-repeat;border-radius: 0px; border: 0px; width:35px; height:35px; color:white;">{{cartlen}}</button>
+  </ion-nav-buttons>
+  
+  <ion-content class="has-header">    
+    <ion-list>
+        
+        <ion-item class="item item-thumbnail-left" ng-repeat="item in cartitems" style="padding:0px;margin:0px;" ng-click="editcart(item.title,item.images,size(item.id),quantity(item.id),convertunit(item.price),convert(item.price,item.id),item.id)">
+            
+            <img src="{{item.images[0].url}}" style="margin-top:6%;"/>
+            <!--<p>test</p>
+             <h2>{{item.title}}</h2>
+             <p>{{item.additional_field}}</p>-->
+            <h2>{{item.title}}</h2>
+            
+            <p style="padding:0px;margin:0px;">Size: {{size(item.id)}}</p>
+            <p style="padding:0px;margin:0px;">Quantity: {{quantity(item.id)}}</p>
+            <p style="padding:0px;margin:0px;">Unit Price: ${{convertunit(item.price)}}</p>
+            <p style="padding:0px;margin:0px;">Amount: <span style="color:#B88A00;">${{convert(item.price,item.id)}}</span></p>
+            <!--<div class="row" align="left" style="padding:0px;margin-top:0px;">
+                <div class="col col-33" align="left" style="padding:0px;margin:0px;"><span class="input-label" align="left">Quantity:</span></div>
+                <div class="col" align="left" style="padding:0px;margin-top:0px;"><input type="text" align="left" style="padding:6% 4% 4% 12%;" ng-value="quantity(item.id)" ng-change="quantitycng(item.id)"></div>
+            </div>-->
+            <ion-option-button class="button button-assertive button-outline" ng-click="remove(item.id);">
+                <button class="button button-assertive button-outline" ng-click="remove(item.id);">
+                    <i class="icon ion-trash-a " ></i>
+                </button>
+            </ion-option-button>
+                </ion-item>
+        
+    </ion-list>
+ 
+  <!--<div class="list">
+      
+      <a class="item item-button-right" ng-repeat="item in cartitems">
+          
+          <h2>{{item.title}}</h2>
+          <button class="button button-clear" style="color:#B88A00;" ng-click="">
+              ${{convert(item.price,item.id)}}
+          </button>
+      </a>
+      
+      
+  </div>-->
+  <div class="list">
+      
+      <a class="item item-button-right">
+          
+          <h2>Grand Total</h2>
+          <button class="button button-clear" style="color:#B88A00;" ng-click="">
+              ${{totalprice()}}
+          </button>
+      </a>
+      
+      
+  </div>
+  <div class="padding">
+  <button class="button button-full" ng-click="purchase()" style="background-color:#511E3A; color:#ffffff;">
+      PLACE ORDER
+  </button>
+  </div>
+    </ion-content>
+
+</ion-view>
